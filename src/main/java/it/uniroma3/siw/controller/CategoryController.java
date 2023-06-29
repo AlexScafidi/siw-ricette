@@ -15,8 +15,8 @@ public class CategoryController {
 	
 	@GetMapping("/categories")
 	public String getAllCategories(Model model) {
-		 model.addAttribute("categories", this.categoryService.findAll());
-		 return "categories.html";
+		 model.addAttribute("categories", this.categoryService.getAllCategories());
+		 return "all/categories.html";
 	}
 
 }

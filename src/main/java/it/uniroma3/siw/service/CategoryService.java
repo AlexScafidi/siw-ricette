@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import it.uniroma3.siw.model.Category;
+import it.uniroma3.siw.repository.CategoryRepository;
 import jakarta.transaction.Transactional;
 
 @Service
@@ -16,13 +17,13 @@ public class CategoryService {
 	
 	
 	@Transactional
-	public newCategoty(Category category) {
+	public Category newCategoty(Category category) {
 		//il validatore controlla
-		this.categoryRepository.save(category); 
+		return this.categoryRepository.save(category); 
 	}
 	
 	@Transactional
-	public saveCategory(Category category) {
+	public Category saveCategory(Category category) {
 		//il validatore controlla
 		return this.categoryRepository.save(category); 
 	}
