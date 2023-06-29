@@ -42,4 +42,9 @@ public class RecipeService {
 		return recipes; 
 	}
 	
+	@Transactional
+	public void deleteRecipe(Long id) {
+		this.recipeRepository.deleteById(id);
+	}
+	
 }
