@@ -35,7 +35,7 @@ public class Recipe {
 	private Category category; 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<IngredientQuantity> quantityIngredients; 
-	@OneToMany(mappedBy = "recipe",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<Comment> comments;
 	
 	public Recipe() {
