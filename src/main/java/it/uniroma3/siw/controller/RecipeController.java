@@ -13,10 +13,15 @@ public class RecipeController {
 	@Autowired
 	private RecipeService recipeService;
 	
-	@GetMapping("/recipes")
+	@GetMapping(value="/recipes")
 	public String getAllRecipes(Model model) {
 		model.addAttribute("recipes", this.recipeService.getAllRecipe());
 		return "all/recipes.html";
 	}
 	
+	@GetMapping(value="/newRecipes")
+	public String getAllNewRecipes(Model model) {
+		model.addAttribute("newRecipes", this.recipeService.getAllNewRecipe()); 
+		return "all/newRecipes.html";
+	}
 }
