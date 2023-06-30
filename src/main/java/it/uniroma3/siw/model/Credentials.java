@@ -14,8 +14,8 @@ import jakarta.validation.constraints.NotBlank;
 @Entity
 public class Credentials {
 	
-	final static String ADMIN_ROLE = "admin"; 
-	final static String USER_ROLE = "user"; 
+	public final static String ADMIN_ROLE = "admin"; 
+	public final static String USER_ROLE = "user"; 
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -28,6 +28,10 @@ public class Credentials {
 	@Column(nullable = false)
 	@NotBlank
 	private String role; 
+	
+	@Column(nullable = false)
+	@NotBlank
+	private String password; 
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	private User user;
@@ -64,6 +68,16 @@ public class Credentials {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+	
+	
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	@Override
