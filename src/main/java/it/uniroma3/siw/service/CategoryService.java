@@ -34,4 +34,8 @@ public class CategoryService {
 		for(Category cat : this.categoryRepository.findAll()) categories.add(cat); 
 		return categories; 
 	}
+
+	public Category getCategory(Long id) {
+		return this.categoryRepository.findById(id).get();
+	}
 }
