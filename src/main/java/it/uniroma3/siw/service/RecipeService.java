@@ -4,9 +4,11 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import it.uniroma3.siw.model.Recipe;
+import it.uniroma3.siw.model.User;
 import it.uniroma3.siw.repository.RecipeRepository;
 import jakarta.transaction.Transactional;
 
@@ -14,7 +16,8 @@ import jakarta.transaction.Transactional;
 public class RecipeService {
 
 	@Autowired RecipeRepository recipeRepository; 
-	
+	@Autowired UserService userService; 
+	@Autowired CredentialsService credentialsService;
 	
 	@Transactional
 	public Recipe newRecipe(Recipe recipe) {
@@ -40,6 +43,18 @@ public class RecipeService {
 		List<Recipe> recipes = new LinkedList<>(); 
 		for(Recipe rec : this.recipeRepository.findAllNewRecipes())  recipes.add(rec); 
 		return recipes; 
+	}
+
+	public Recipe createNewRecipe(Recipe recipe, UserDetails userDetails) {
+		//il controllo lo lascio alla validazione...gia fatta
+		User user = (this.credentialsService.getCredentials(userDetails.getUsername())).getUser(); 
+		if(user == null || recipe == null) return null; 
+		//altrimenti
+		user.getRecipes().add(recipe);
+		recipe.setAutor(user);
+		//cascading
+		this.userService.save(user); 
+		return this.recipeRepository.save(recipe); 
 	}
 	
 }

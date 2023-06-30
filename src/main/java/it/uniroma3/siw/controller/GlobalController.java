@@ -1,9 +1,9 @@
 package it.uniroma3.siw.controller;
 
-import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.GetMapping;
 
-@Controller
+@ControllerAdvice
 public class GlobalController {
 
 	@GetMapping(value="/")
