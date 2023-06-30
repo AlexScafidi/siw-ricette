@@ -6,8 +6,4 @@ import org.springframework.web.bind.annotation.GetMapping;
 @ControllerAdvice
 public class GlobalController {
 
-	@GetMapping(value="/")
-	public String index() {
-		return "all/index.html";
-	}
 }

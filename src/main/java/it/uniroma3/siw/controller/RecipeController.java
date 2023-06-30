@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import it.uniroma3.siw.model.Recipe;
 import it.uniroma3.siw.service.RecipeService;
-import it.uniroma3.siw.service.UserService;
 import jakarta.validation.Valid;
 
 @Controller
@@ -20,8 +19,8 @@ public class RecipeController {
 	
 	@Autowired
 	private RecipeService recipeService;
-	@Autowired 
-	private UserService userService; 
+//	@Autowired 
+//	private UserService userService; 
 	
 	@GetMapping(value="/recipes")
 	public String getAllRecipes(Model model) {
@@ -35,13 +34,13 @@ public class RecipeController {
 		return "all/newRecipes.html";
 	}
 	
-	@GetMapping(value="/formNewRecipe")
+	@GetMapping(value="/user/formNewRecipe")
 	public String showFormNewRecipe(Model model) {
 		model.addAttribute("recipe", new Recipe()); 
 		return "user/formNewRecipe.html"; 
 	}
 	
-	@PostMapping(value="/formNewRecipe")
+	@PostMapping(value="/user/formNewRecipe")
 	public String newRecipe(@Valid @ModelAttribute("recipe") Recipe recipe, 
 			@RequestParam("userDetails") UserDetails userDetails, 
 			BindingResult RecipeBindingResult, Model model) {
